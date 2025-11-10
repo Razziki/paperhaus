@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_10_220017) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_220636) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "status"
+    t.string "payment_status"
+    t.integer "subtotal_cents"
+    t.integer "tax_cents"
+    t.integer "shipping_cents"
+    t.integer "total_cents"
+    t.string "currency"
+    t.datetime "placed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -39,5 +54,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_220017) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end
