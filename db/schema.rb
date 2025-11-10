@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_10_220830) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_225154) do
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -20,11 +20,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_220830) do
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
-    t.string "name"
-    t.integer "unit_price_cents"
-    t.string "currency"
-    t.integer "quantity"
-    t.integer "total_cents"
+    t.string "name", null: false
+    t.integer "unit_price_cents", default: 0, null: false
+    t.string "currency", default: "CAD", null: false
+    t.integer "quantity", default: 1, null: false
+    t.integer "total_cents", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -33,13 +33,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_220830) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "status"
-    t.string "payment_status"
-    t.integer "subtotal_cents"
-    t.integer "tax_cents"
-    t.integer "shipping_cents"
-    t.integer "total_cents"
-    t.string "currency"
+    t.string "status", default: "pending", null: false
+    t.string "payment_status", default: "unpaid", null: false
+    t.integer "subtotal_cents", default: 0, null: false
+    t.integer "tax_cents", default: 0, null: false
+    t.integer "shipping_cents", default: 0, null: false
+    t.integer "total_cents", default: 0, null: false
+    t.string "currency", default: "CAD", null: false
     t.datetime "placed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,11 +47,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_220830) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "author"
     t.text "description"
-    t.integer "price_cents"
-    t.string "currency"
+    t.integer "price_cents", default: 0, null: false
+    t.string "currency", default: "CAD", null: false
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,17 +59,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_220830) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "role"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.string "role", default: "customer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "categories"
 end
