@@ -1,4 +1,4 @@
 <h1>Books</h1>
 <% @products.each do |p| %>
-  <div><%= p.name %></div>
+  <div><%= link_to p.name, p %></div>
 <% end %>
