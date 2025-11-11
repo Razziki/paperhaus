@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "categories/index"
   get "products/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
 
   root to: "products#index"
   resources :products, only: [ :index, :show ]
+  resources :categories, only: [ :index, :show ]
 end

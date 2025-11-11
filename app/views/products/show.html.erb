@@ -1,2 +1,6 @@
 <h1><%= @product.name %></h1>
+<p>by <%= @product.author %></p>
 <p><%= @product.description %></p>
+<p>Category: <%= @product.category.name %></p>
+<p>Price: $<%= (@product.price_cents/100.0).round(2) %></p>
+<p><%= link_to "Back", products_path %></p>
