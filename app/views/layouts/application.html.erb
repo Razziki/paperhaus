@@ -22,7 +22,21 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+   <body>
+    <nav>
+      <%= link_to "Home",        root_path %> |
+      <%= link_to "Categories",  categories_path %> |
+    <%#  <%= link_to "Cart",        cart_path %> |
+      <%= link_to "About",       about_path %>
+    </nav>
+
+    <% if notice %>
+      <p style="color:green"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p style="color:red"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
