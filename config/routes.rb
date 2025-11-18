@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "sessions/new"
+  get "users/new"
+  get "users/create"
+  get "users/show"
   get "about", to: "pages#about"
   get "categories/index"
   get "products/index"
@@ -16,7 +20,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root to: "products#index"
-  resources :products, only: [ :index, :show ]
-  resources :categories, only: [ :index, :show ]
+  resources :products, only: %i[ index show ]
   resources :categories, only: %i[index show]
+  resources :users, only: %i[new create show]
+  resources :sessions, only: %i[new create]
+  delete "logout", to: "sessions#destroy"
 end
