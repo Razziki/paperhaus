@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   get "sessions/new"
   get "users/new"
   get "users/create"
