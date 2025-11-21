@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to new_session_path, alert: "Please log in to proceed" unless current_user
   end
+
+    def authenticate_admin!
+    unless current_user&.role == "admin"
+      redirect_to root_path, alert: "Not authorized"
+    end
+    end
 end

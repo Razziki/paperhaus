@@ -6,6 +6,9 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Paperhaus"
 
+  config.current_user_method = :current_user
+  config.authentication_method = :authenticate_admin!
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -120,7 +123,12 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+  # config.logout_link_path = :destroy_admin_user_session_path
+
+  # MY custom logout:
+
+  config.logout_link_path = :logout_path
+  config.logout_link_method = :delete
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -174,7 +182,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = [ :encrypted_password, :password, :password_confirmation ]
 
   # == Localize Date/Time Format
   #
