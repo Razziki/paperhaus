@@ -6,4 +6,10 @@ ActiveAdmin.register Product do
                 :price_cents,
                 :currency,
                 :category_id
+
+  filter :name
+  filter :author
+  filter :category
+
+  remove_filter :order_items
 end
