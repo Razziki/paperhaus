@@ -1,0 +1,18 @@
+<h1>Carts#show</h1>
+<h1>Your Cart</h1>
+
+<% @cart.each do |product, qty| %>
+  <div>
+    <strong><%= product.name %></strong>
+    <div>Qty:
+      <%= form_with url: update_cart_item_path(product), method: :patch, local: true do |f| %>
+        <%= f.number_field :quantity, value: qty, min: 0 %>
+        <%= f.submit "Update" %>
+      <% end %>
+    </div>
+    <div>
+      <%= button_to "Remove", remove_from_cart_path(product), method: :delete %>
+    </div>
+  </div>
+  <hr>
+<% end %>

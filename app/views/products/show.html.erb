@@ -3,4 +3,5 @@
 <p><%= @product.description %></p>
 <p>Category: <%= @product.category.name %></p>
 <p>Price: $<%= (@product.price_cents/100.0).round(2) %></p>
+<%= button_to "Add to Cart", add_to_cart_path(@product), method: :post %>
 <p><%= link_to "Back", products_path %></p>

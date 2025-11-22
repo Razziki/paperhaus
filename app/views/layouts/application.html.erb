@@ -25,19 +25,21 @@
 
    <body>
     <nav>
-      <%= link_to "Home", root_path %> |
-      <%= link_to "Categories", categories_path %> |
-       <%#  <%= link_to "Cart", cart_path %> |
-      <% if current_user %>
-      Logged in as <%= current_user.email %> |
-      <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
-        <% else %>
-        <%= link_to "Login", new_session_path %> |
-        <%= link_to "Sign up", new_user_path %> |
-        <%= link_to "About", about_path %> |
-        <%= link_to "Contact", contact_path %> |
-      <% end %>
-    </nav>
+  <%= link_to "Home", root_path %> |
+  <%= link_to "Categories", categories_path %> |
+  <%= link_to "Cart", cart_path %> |
+  <%= link_to "About", about_path %> |
+  <%= link_to "Contact", contact_path %> |
+
+  <% if current_user %>
+    Logged in as <%= current_user.email %> |
+    <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to "Login", new_session_path %> |
+    <%= link_to "Sign up", new_user_path %> |
+  <% end %>
+</nav>
+
 
     <% if notice %>
       <p style="color:green"><%= notice %></p>
