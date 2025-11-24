@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create]
   delete "logout", to: "sessions#destroy"
 
+  resources :orders, only: %i[ index show new create ]
+
   resource :cart, only: [ :show ]
   post   "cart/add/:product_id",    to: "carts#add",    as: :add_to_cart
   patch  "cart/update/:product_id", to: "carts#update", as: :update_cart_item
