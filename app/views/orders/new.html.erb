@@ -1,0 +1,34 @@
+<h1>Checkout</h1>
+
+<p><strong>Shipping to:</strong></p>
+<p>
+  <%= current_user.address_line1 %><br>
+  <%= current_user.city %>, <%= current_user.province&.name %><br>
+  <%= current_user.postal_code %>
+</p>
+
+<h2>Your cart</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Line total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cart_items.each do |product, qty| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= qty %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td><%= number_to_currency(product.price * qty) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with model: @order, url: orders_path do |f| %>
+  <%= f.submit "Place Order" %>
+<% end %>
