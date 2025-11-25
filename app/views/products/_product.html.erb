@@ -1,0 +1,17 @@
+<div class="mb-3">
+  <strong><%= link_to product.name, product %></strong><br>
+
+  <% if product.author.present? %>
+    <span>by <%= product.author %></span><br>
+  <% end %>
+
+  <% if product.category %>
+    <span><%= product.category.name %></span><br>
+  <% end %>
+
+  <span>
+    Price:
+    <%= number_to_currency(product.price_cents / 100.0) %>
+  </span>
+</div>
+<hr>

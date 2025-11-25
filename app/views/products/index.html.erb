@@ -1,10 +1,5 @@
 <h1>Books</h1>
-<% @products.each do |p| %>
-  <div>
-    <strong><%= link_to p.name, p %></strong>
-    <div>by <%= p.author %></div>
-    <div><%= p.category.name %></div>
-    <div>Price: $<%= (p.price_cents/100.0).round(2) %></div>
-  </div>
-  <hr>
+
+<% @products.each do |product| %>
+  <%= render "product", product: product %>
 <% end %>

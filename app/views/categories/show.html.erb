@@ -1,7 +1,5 @@
 <h1><%= @category.name %></h1>
 <% @products.each do |p| %>
-  <div>
-    <%= link_to p.name, p %> — $<%= (p.price_cents/100.0).round(2) %>
-  </div>
+   <%= render "products/product", product: p %>
 <% end %>
 <p><%= link_to "Back", categories_path %></p>
