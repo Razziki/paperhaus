@@ -45,11 +45,11 @@ class OrdersController < ApplicationController
   def build_order_items_from_cart(order)
     cart_items.each do |product, qty|
       order.order_items.build(
-        product:      product,
-        quantity:     qty,
-        unit_price:   product.price,
-        name_snapshot:  product.title,
-        price_snapshot: product.price
+        product:          product,
+        name:             product.name,
+        unit_price_cents: product.price_cents,
+        quantity:         qty,
+        total_cents:      product.price_cents * qty
       )
     end
   end

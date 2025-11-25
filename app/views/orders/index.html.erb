@@ -11,10 +11,11 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to "##{order.id}", order_path(order) %></td>
-        <td><%= order.created_at.to_s(:short) %></td>
-        <td><%= number_to_currency(order.grand_total) %></td>
-      </tr>
+      <td><%= link_to "##{order.id}", order_path(order) %></td>
+      <td><%= order.created_at.to_fs(:short) %></td>
+      <td><%= number_to_currency(order.total_cents / 100.0) %></td>
+</tr>
+
     <% end %>
   </tbody>
 </table>

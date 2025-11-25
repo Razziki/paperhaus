@@ -1,34 +1,36 @@
 <h1>Checkout</h1>
 
-<p><strong>Shipping to:</strong></p>
+<h2>Shipping Address</h2>
 <p>
+  <%= current_user.first_name %> <%= current_user.last_name %><br>
   <%= current_user.address_line1 %><br>
-  <%= current_user.city %>, <%= current_user.province&.name %><br>
-  <%= current_user.postal_code %>
+  <%= current_user.city %><br>
+  <%= current_user.postal_code %><br>
+  <%= current_user.province&.name %>
 </p>
 
-<h2>Your cart</h2>
+<h2>Your Cart</h2>
 <table>
   <thead>
     <tr>
-      <th>Product</th>
+      <th>Title</th>
       <th>Qty</th>
       <th>Price</th>
-      <th>Line total</th>
+      <th>Line Total</th>
     </tr>
   </thead>
   <tbody>
     <% cart_items.each do |product, qty| %>
       <tr>
-        <td><%= product.title %></td>
+        <td><%= product.name %></td>
         <td><%= qty %></td>
-        <td><%= number_to_currency(product.price) %></td>
-        <td><%= number_to_currency(product.price * qty) %></td>
+        <td><%= number_to_currency(product.price_cents / 100.0) %></td>
+        <td><%= number_to_currency((product.price_cents * qty) / 100.0) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= form_with model: @order, url: orders_path do |f| %>
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
   <%= f.submit "Place Order" %>
 <% end %>

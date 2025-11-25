@@ -24,20 +24,11 @@ class CartsController < ApplicationController
     redirect_to cart_path, notice: "Cart updated"
   end
 
-   def remove
+  def remove
     product_id = params[:product_id].to_s
     cart = session[:cart] || {}
     cart.delete(product_id)
     session[:cart] = cart
     redirect_to cart_path, notice: "Item removed"
-   end
-
-  private
-
-  def cart_items
-    (session[:cart] || {}).map do |product_id, qty|
-      product = Product.find(product_id)
-      [ product, qty ]
-    end
   end
 end
