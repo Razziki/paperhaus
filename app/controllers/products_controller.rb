@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @search       = params[:search].to_s.strip
-    @category_id  = params[:category_id].presence
+    @search = params[:search].to_s.strip
+    @category_id = params[:category_id].presence
 
     scope = Product.includes(:category).order(:name)
 
@@ -12,6 +12,10 @@ class ProductsController < ApplicationController
 
     if @category_id
       scope = scope.where(category_id: @category_id)
+    end
+
+    def show
+    @product = Product.includes(:category).find(params[:id])
     end
 
     @products = scope.page(params[:page]).per(10)

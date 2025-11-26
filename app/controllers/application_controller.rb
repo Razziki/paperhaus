@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # cart items helper for Carts Controller + Orders Controller
+  # helper for the books in the cart
   def cart_items
     (session[:cart] || {}).map do |product_id, qty|
       product = Product.find(product_id)

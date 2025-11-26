@@ -32,7 +32,7 @@
 
 <h2>Totals</h2>
 <p>Subtotal: <%= number_to_currency(@order.subtotal_cents / 100.0) %></p>
-<p>Tax:      <%= number_to_currency(@order.tax_cents / 100.0) %></p>
+<p>Tax: <%= number_to_currency(@order.tax_cents / 100.0) %></p>
 <p>Shipping: <%= number_to_currency(@order.shipping_cents / 100.0) %></p>
 <p><strong>Total: <%= number_to_currency(@order.total_cents / 100.0) %></strong></p>
 
