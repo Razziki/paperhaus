@@ -16,11 +16,30 @@ Product.destroy_all
 Category.destroy_all
 Province.destroy_all
 
-mb = Province.create!(name: "Manitoba", gst: 0.05, pst: 0.07, hst: 0.0)
-on = Province.create!(name: "Ontario",  gst: 0.05, pst: 0.08, hst: 0.0)
-ab = Province.create!(name: "Alberta",  gst: 0.05, pst: 0.0,  hst: 0.0)
+provinces = [
+  { name: "Alberta",        gst: 0.05, pst: 0.0,  hst: 0.0 },
+  { name: "British Columbia", gst: 0.05, pst: 0.07, hst: 0.0 },
+  { name: "Manitoba",       gst: 0.05, pst: 0.07, hst: 0.0 },
+  { name: "New Brunswick",  gst: 0.0,  pst: 0.0,  hst: 0.15 },
+  { name: "Newfoundland and Labrador", gst: 0.0, pst: 0.0, hst: 0.15 },
+  { name: "Nova Scotia",    gst: 0.0,  pst: 0.0,  hst: 0.15 },
+  { name: "Ontario",        gst: 0.0,  pst: 0.0,  hst: 0.13 },
+  { name: "Prince Edward Island", gst: 0.0, pst: 0.0, hst: 0.15 },
+  { name: "Quebec",         gst: 0.05, pst: 0.09975, hst: 0.0 },
+  { name: "Saskatchewan",   gst: 0.05, pst: 0.06, hst: 0.0 },
+  { name: "Yukon",          gst: 0.05, pst: 0.0,  hst: 0.0 },
+  { name: "Northwest Territories", gst: 0.05, pst: 0.0, hst: 0.0 },
+  { name: "Nunavut",        gst: 0.05, pst: 0.0,  hst: 0.0 }
+]
+provinces.each do |attrs|
+  Province.find_or_create_by!(name: attrs[:name]) do |p|
+    p.gst = attrs[:gst]
+    p.pst = attrs[:pst]
+    p.hst = attrs[:hst]
+  end
+end
 
-
+manitoba = Province.find_by!(name: "Manitoba")
 
 fiction = Category.create!(name: "Fiction")
 nonfiction = Category.create!(name: "Nonfiction")
@@ -78,8 +97,8 @@ end
 
 
 User.create!(first_name: "Admin", last_name:  "Adminov", email: "admin@paperhaus.com", password: "password", password_confirmation: "password", role: "admin", address_line1: "123 College Avenue", city: "Winnipeg",
-postal_code:   "R3L 1C4", province: mb )
+postal_code:   "R3L 1C4", province: manitoba )
 
 User.create!(first_name: "Jack", last_name: "Bauer", email: "jack@paperhaus.com", password: "password",
 password_confirmation: "password", role: "customer", address_line1: "456 Campus Road", city: "Winnipeg",
-postal_code:   "R3L 2B1", province: mb )
+postal_code:   "R3L 2B1", province: manitoba )
