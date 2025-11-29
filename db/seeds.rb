@@ -14,6 +14,12 @@ Order.destroy_all
 User.destroy_all
 Product.destroy_all
 Category.destroy_all
+Province.destroy_all
+
+mb = Province.create!(name: "Manitoba", gst: 0.05, pst: 0.07, hst: 0.0)
+on = Province.create!(name: "Ontario",  gst: 0.05, pst: 0.08, hst: 0.0)
+ab = Province.create!(name: "Alberta",  gst: 0.05, pst: 0.0,  hst: 0.0)
+
 
 
 fiction = Category.create!(name: "Fiction")
@@ -54,7 +60,26 @@ products = [
   { name: "Research Ready", author: "Y. Chen", description: "Guide to academic research.", price_cents: 2199, currency: "CAD", category: study }
 ]
 
-products.each { |p| Product.create!(p) }
+image_dir = Rails.root.join("db/seed_images")
 
-User.create!(first_name: "Admin", last_name: "User", email: "admin@paperhaus.com", password: "password", password_confirmation: "password", role: "admin")
-User.create!(first_name: "Buyer", last_name: "Customer", email: "buyer@paperhaus.com", password: "password", password_confirmation: "password", role: "customer")
+products.each_with_index do |attrs, index|
+  product = Product.create!(attrs)
+
+  filename   = "book#{index + 1}.jpg"
+  image_path = image_dir.join(filename)
+
+  product.image.attach(
+    io: File.open(image_path),
+    filename: filename,
+    content_type: "image/jpeg"
+  )
+end
+
+
+
+User.create!(first_name: "Admin", last_name:  "Adminov", email: "admin@paperhaus.com", password: "password", password_confirmation: "password", role: "admin", address_line1: "123 College Avenue", city: "Winnipeg",
+postal_code:   "R3L 1C4", province: mb )
+
+User.create!(first_name: "Jack", last_name: "Bauer", email: "jack@paperhaus.com", password: "password",
+password_confirmation: "password", role: "customer", address_line1: "456 Campus Road", city: "Winnipeg",
+postal_code:   "R3L 2B1", province: mb )

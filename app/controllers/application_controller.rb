@@ -19,10 +19,22 @@ class ApplicationController < ActionController::Base
   end
 
   # helper for the books in the cart
-  def cart_items
-    (session[:cart] || {}).map do |product_id, qty|
-      product = Product.find(product_id)
-      [ product, qty ]
+ def cart_items
+  cart_hash = session[:cart] || {}
+  items     = []
+
+  cart_hash.each do |product_id, qty|
+    product = Product.find_by(id: product_id)
+
+    if product
+      items << [product, qty]
+    else
+      cart_hash.delete(product_id)
     end
   end
+
+  session[:cart] = cart_hash
+  items
+end
+
 end

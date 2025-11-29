@@ -2,8 +2,9 @@
   <strong><%= link_to product.name, product %></strong><br>
 
  <% if product.image.attached? %>
-    <%= image_tag product.image, alt: product.name,
-                                 style: "max-width: 150px; height: auto; display: block; margin-bottom: 0.5rem;" %>
+    <%= image_tag product.image,
+    alt: product.name,
+    style: "max-width: 150px; height: auto; display: block; margin-bottom: 0.5rem;" %>
   <% end %>
 
   <% if product.author.present? %>

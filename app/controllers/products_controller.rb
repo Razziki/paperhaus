@@ -14,11 +14,11 @@ class ProductsController < ApplicationController
       scope = scope.where(category_id: @category_id)
     end
 
-    def show
-    @product = Product.includes(:category).find(params[:id])
-    end
-
     @products = scope.page(params[:page]).per(10)
     @categories = Category.order(:name)
   end
+
+    def show
+    @product = Product.includes(:category).find(params[:id])
+    end
 end
