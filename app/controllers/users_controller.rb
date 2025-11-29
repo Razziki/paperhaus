@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @provinces = Province.order(:name)
   end
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Account created!"
     else
+      @provinces = Province.order(:name)
       render :new, status: :unprocessable_entity
     end
   end
@@ -21,6 +24,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :address_line1,
+      :city,
+      :postal_code,
+      :province_id
+    )
   end
 end
