@@ -13,4 +13,16 @@ class Order < ApplicationRecord
     self.shipping_cents ||= 0
     self.total_cents = subtotal_cents + tax_cents + shipping_cents
   end
+
+    def self.ransackable_attributes(auth_object = nil)
+    %w[id user_id province_id status payment_status subtotal_cents tax_cents shipping_cents total_cents currency
+      placed_at
+      created_at
+      updated_at
+    ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user province order_items]
+  end
 end
