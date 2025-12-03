@@ -1,41 +1,61 @@
-<h1>Order #<%= @order.id %></h1>
+<div class="order-show">
+  <h1>Order #<%= @order.id %></h1>
 
-<p>
-  Placed on <%= @order.created_at.to_fs(:long) %><br>
-  Ship to:
-  <%= @order.user.address_line1 %>,
-  <%= @order.user.city %>,
-  <%= @order.user.province&.name %>
-  <%= @order.user.first_name %>
-  <%= @order.user.last_name %>
-</p>
+  <div class="order-meta">
+    <p class="mb-1">
+      Placed on <strong><%= @order.created_at.to_fs(:long) %></strong>
+    </p>
+    <p class="mb-0">
+      <strong>Ship to:</strong><br>
+      <%= @order.user.first_name %> <%= @order.user.last_name %><br>
+      <%= @order.user.address_line1 %><br>
+      <%= @order.user.city %>, <%= @order.user.province&.name %>
+    </p>
+  </div>
 
-<h2>Items</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Qty</th>
-      <th>Unit Price</th>
-      <th>Line Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.order_items.each do |item| %>
+  <h2 class="mt-4">Items</h2>
+  <table class="table order-items-table">
+    <thead>
       <tr>
-        <td><%= item.name %></td>
-        <td><%= item.quantity %></td>
-        <td><%= number_to_currency(item.unit_price_cents / 100.0) %></td>
-        <td><%= number_to_currency(item.total_cents / 100.0) %></td>
+        <th>Title</th>
+        <th class="text-center">Qty</th>
+        <th class="text-end">Unit Price</th>
+        <th class="text-end">Line Total</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @order.order_items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td class="text-center"><%= item.quantity %></td>
+          <td class="text-end"><%= number_to_currency(item.unit_price_cents / 100.0) %></td>
+          <td class="text-end"><%= number_to_currency(item.total_cents / 100.0) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<h2>Totals</h2>
-<p>Subtotal: <%= number_to_currency(@order.subtotal_cents / 100.0) %></p>
-<p>Tax: <%= number_to_currency(@order.tax_cents / 100.0) %></p>
-<p>Shipping: <%= number_to_currency(@order.shipping_cents / 100.0) %></p>
-<p><strong>Total: <%= number_to_currency(@order.total_cents / 100.0) %></strong></p>
+  <h2 class="mt-4">Totals</h2>
+  <table class="table order-totals">
+    <tbody>
+      <tr>
+        <td>Subtotal</td>
+        <td class="text-end"><%= number_to_currency(@order.subtotal_cents / 100.0) %></td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td class="text-end"><%= number_to_currency(@order.tax_cents / 100.0) %></td>
+      </tr>
+      <tr>
+        <td>Shipping</td>
+        <td class="text-end"><%= number_to_currency(@order.shipping_cents / 100.0) %></td>
+      </tr>
+      <tr class="order-total-row">
+        <td>Total</td>
+        <td class="text-end"><strong><%= number_to_currency(@order.total_cents / 100.0) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-<p><%= link_to "Back to My Orders", orders_path %></p>
+  <%= link_to "Back to My Orders", orders_path, class: "btn btn-link px-0" %>
+</div>

@@ -3,6 +3,8 @@
    <%= render "products/product", product: p %>
 <% end %>
 <p><%= link_to "Back", categories_path %></p>
-<nav class="pagination">
+
+<div class="mt-3 pagination-container">
   <%= paginate @products %>
-</nav>
+</div>
+

@@ -1,18 +1,16 @@
-<h1>Books</h1>
+<h1 class="mb-4">Books</h1>
 
-<%= form_with url: products_path, method: :get, local: true do %>
-  <label>
-    Search:
-    <input
-      type="text"
-      name="search"
-      value="<%= @search %>"
-      placeholder="Title or description">
-  </label>
+<%= form_with url: products_path, method: :get, local: true, class: "row g-2 mb-4" do %>
+  <!-- Search: full width on its own row since bootstrap would have moved ever single row without this-->
+  <div class="col-12">
+    <label class="form-label">Search:</label>
+    <input type="text" name="search" value="<%= @search %>" placeholder="Title or description" class="form-control">
+  </div>
 
-  <label>
-    Category:
-    <select name="category_id">
+  <!-- Category -->
+  <div class="col-12 col-md-4">
+    <label class="form-label">Category:</label>
+    <select name="category_id" class="form-select">
       <option value="">All</option>
       <% @categories.each do |c| %>
         <option value="<%= c.id %>" <%= "selected" if c.id.to_s == @category_id.to_s %>>
@@ -20,19 +18,18 @@
         </option>
       <% end %>
     </select>
-  </label>
-<br>
-<br>
-  <button type="submit">Search</button>
-  <br>
-<br>
-<br>
+  </div>
+
+  <!-- Search button: next to Category on desktop, under it on mobile -->
+  <div class="col-12 col-md-2 d-flex align-items-end">
+    <button type="submit" class="btn btn-primary w-100">Search</button>
+  </div>
 <% end %>
 
 <% @products.each do |product| %>
   <%= render "product", product: product %>
 <% end %>
 
-<nav class="pagination">
+<div class="mt-3 pagination-container">
   <%= paginate @products %>
-</nav>
+</div>

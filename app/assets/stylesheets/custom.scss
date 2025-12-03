@@ -1,0 +1,133 @@
+/*
+ * Custom overrides for Paperhaus storefront
+ */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f7f7f7;
+}
+
+/* Kill underlines everywhere */
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus {
+  text-decoration: none !important;
+}
+
+/* Navbar link colours + no underlines */
+.navbar {
+  font-size: medium;
+}
+
+.navbar .nav-link,
+.navbar .nav-link:link,
+.navbar .nav-link:visited,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar-brand,
+.navbar-brand:link,
+.navbar-brand:visited,
+.navbar-brand:hover,
+.navbar-brand:focus {
+  text-decoration: none !important;
+  color: #f8f9fa !important;
+}
+
+.navbar .nav-link:hover {
+  color: #a3a09d !important;
+  /* your accent color */
+}
+
+/* Main content card */
+main.container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.btn {
+  font-size: small;
+}
+
+.form-select {
+
+  font-size: small;
+}
+
+
+.card-title {
+  font-size: medium;
+}
+
+.book-author {
+  font-size: medium;
+}
+
+.book-author-name {
+  font-size: small;
+}
+
+.product-price {
+  font-size: medium;
+}
+
+.mb-2 {
+  font-size: medium;
+  margin-left: 5px;
+}
+
+/* Contact page styling */
+.contact-page .contact-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-page .contact-body {
+  max-width: 40rem;
+  font-size: 0.95rem;
+}
+
+.contact-page .contact-find-label {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.contact-page .contact-map iframe {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 0.5rem;
+}
+
+
+.about-body {
+  max-width: 40rem;
+  font-size: 0.95rem;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.pagination-container {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+
+.cart-page .btn-primary {
+  background-color: #7f878f;
+  border-color: #101620;
+  color: #f8f9fa;
+}
+
+.cart-page .btn-primary:hover {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: #f8f9fa;
+}

@@ -1,23 +1,33 @@
-<div class="mb-3">
-  <strong><%= link_to product.name, product %></strong><br>
-
- <% if product.image.attached? %>
-    <%= image_tag product.image,
-    alt: product.name,
-    style: "max-width: 150px; height: auto; display: block; margin-bottom: 0.5rem;" %>
-  <% end %>
-
-  <% if product.author.present? %>
-    <span>by <%= product.author %></span><br>
-  <% end %>
-
-  <% if product.category %>
-    <span><%= product.category.name %></span><br>
-  <% end %>
-
-  <span>
-    Price:
-    <%= number_to_currency(product.price_cents / 100.0) %>
-  </span>
+<div class="card mb-3" style="max-width: 420px;">
+  <div class="row g-0">
+    <div class="col-4">
+      <% if product.image.attached? %>
+        <%= image_tag product.image, alt: product.name, class: "img-fluid rounded-start" %>
+      <% end %>
 </div>
-<hr>
+
+    <div class="col-8">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to product.name, product %>
+        </h5>
+
+        <% if product.author.present? %>
+          <p class="card-text mb-1">
+            <small class="text-muted">by<span class="book-author-name"> <%= product.author %></small>
+          </p>
+        <% end %>
+
+        <% if product.category %>
+          <p class="card-text mb-1 book-author">
+            <span class="badge bg-secondary"><%= product.category.name %></span>
+          </p>
+        <% end %>
+
+        <p class="card-text fw-bold mb-0 product-price">
+          <%= number_to_currency(product.price_cents / 100.0) %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

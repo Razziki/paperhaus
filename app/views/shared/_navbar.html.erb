@@ -1,21 +1,47 @@
-<nav>
-  <%= link_to "Home", root_path %> |
-  <%= link_to "Categories", categories_path %> |
-  <%= link_to "Cart", cart_path %> |
-  <%= link_to "About", about_path %> |
-  <%= link_to "Contact", contact_path %> |
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
 
-  <% if current_user %>
-    <%= link_to "My Orders", orders_path %> |
+    <a class="navbar-brand" href="<%= root_path %>">Paperhaus</a>
 
-    <% if current_user.role == "admin" %>
-      <%= link_to "Admin", admin_root_path %> |
-    <% end %>
+    <!-- mobile burger button -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    Logged in as <%= current_user.email %> |
-    <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
-  <% else %>
-    <%= link_to "Login", new_session_path %> |
-    <%= link_to "Sign up", new_user_path %> |
-  <% end %>
+    <!-- collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <!-- links  -->
+      <div class="navbar-nav me-auto">
+        <%= link_to "Home", root_path, class: "nav-link" %>
+        <%= link_to "Categories", categories_path, class: "nav-link" %>
+        <%= link_to "Cart", cart_path, class: "nav-link" %>
+        <%= link_to "About", about_path, class: "nav-link" %>
+        <%= link_to "Contact", contact_path, class: "nav-link" %>
+        <% if current_user %>
+          <%= link_to "My Orders", orders_path, class: "nav-link" %>
+        <% end %>
+        <% if current_user&.role == "admin" %>
+          <%= link_to "Admin", admin_root_path, class: "nav-link" %>
+        <% end %>
+      </div>
+
+      <!--  user info / buttons  -->
+      <div class="d-flex align-items-center text-white ms-md-3 mt-3 mt-md-0">
+        <% if current_user %>
+          <span class="me-2 small">
+            Logged in as <%= current_user.email %>
+          </span>
+          <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-light btn-sm" %>
+        <% else %>
+          <%= link_to "Login", new_session_path, class: "btn btn-outline-light btn-sm me-2" %>
+          <%= link_to "Sign up", new_user_path, class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </nav>

@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
     def to_s
-    email   # or "#{first_name} #{last_name} (#{email})"
+    email
   end
 end

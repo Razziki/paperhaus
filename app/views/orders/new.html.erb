@@ -1,36 +1,39 @@
-<h1>Checkout</h1>
+<div class="checkout-page">
+  <h1>Checkout</h1>
 
-<h2>Shipping Address</h2>
-<p>
-  <%= current_user.first_name %> <%= current_user.last_name %><br>
-  <%= current_user.address_line1 %><br>
-  <%= current_user.city %><br>
-  <%= current_user.postal_code %><br>
-  <%= current_user.province&.name %>
-</p>
+  <div class="checkout-meta">
+    <h2 class="h5">Shipping Address</h2>
+    <p class="mb-0">
+      <strong><%= current_user.first_name %> <%= current_user.last_name %></strong><br>
+      <%= current_user.address_line1 %><br>
+      <%= current_user.city %>, <%= current_user.province&.name %><br>
+      <%= current_user.postal_code %>
+    </p>
+  </div>
 
-<h2>Your Cart</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Qty</th>
-      <th>Price</th>
-      <th>Line Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% cart_items.each do |product, qty| %>
+  <h2 class="mt-4">Your Cart</h2>
+  <table class="table checkout-items-table">
+    <thead>
       <tr>
-        <td><%= product.name %></td>
-        <td><%= qty %></td>
-        <td><%= number_to_currency(product.price_cents / 100.0) %></td>
-        <td><%= number_to_currency((product.price_cents * qty) / 100.0) %></td>
+        <th>Title</th>
+        <th class="text-center">Qty</th>
+        <th class="text-end">Price</th>
+        <th class="text-end">Line Total</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% cart_items.each do |product, qty| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td class="text-center"><%= qty %></td>
+          <td class="text-end"><%= number_to_currency(product.price_cents / 100.0) %></td>
+          <td class="text-end"><%= number_to_currency((product.price_cents * qty) / 100.0) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= form_with model: @order, url: orders_path, local: true do |f| %>
-  <%= f.submit "Place Order" %>
-<% end %>
+  <%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <%= f.submit "Place Order", class: "btn btn-primary mt-3" %>
+  <% end %>
+</div>
