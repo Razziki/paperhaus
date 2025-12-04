@@ -18,16 +18,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # helper for the books in the cart
+ # helper for the books in the cart
  def cart_items
   cart_hash = session[:cart] || {}
-  items     = []
+  items = []
 
   cart_hash.each do |product_id, qty|
     product = Product.find_by(id: product_id)
 
     if product
-      items << [product, qty]
+      items << [ product, qty ]
     else
       cart_hash.delete(product_id)
     end
@@ -35,6 +35,5 @@ class ApplicationController < ActionController::Base
 
   session[:cart] = cart_hash
   items
-end
-
+ end
 end

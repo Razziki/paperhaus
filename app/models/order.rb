@@ -20,7 +20,7 @@ class Order < ApplicationRecord
       created_at
       updated_at
     ]
-  end
+    end
 
   def self.ransackable_associations(auth_object = nil)
     %w[user province order_items]

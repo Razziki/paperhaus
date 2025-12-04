@@ -34,6 +34,9 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[ index show new create ]
 
+  resources :users, only: [ :new, :create, :show, :edit, :update ]
+
+
   resource :cart, only: [ :show ]
   post   "cart/add/:product_id",    to: "carts#add",    as: :add_to_cart
   patch  "cart/update/:product_id", to: "carts#update", as: :update_cart_item
