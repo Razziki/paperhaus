@@ -97,8 +97,8 @@ end
 
 
 User.create!(first_name: "Admin", last_name:  "Adminov", email: "admin@paperhaus.com", password: "password", password_confirmation: "password", role: "admin", address_line1: "123 College Avenue", city: "Winnipeg",
-postal_code:   "R3L 1C4", province: manitoba)
+postal_code: "R3L 1C4", province: manitoba)
 
 User.create!(first_name: "Jack", last_name: "Bauer", email: "jack@paperhaus.com", password: "password",
 password_confirmation: "password", role: "customer", address_line1: "456 Campus Road", city: "Winnipeg",
-postal_code:   "R3L 2B1", province: manitoba)
+postal_code: "R3L 2B1", province: manitoba)

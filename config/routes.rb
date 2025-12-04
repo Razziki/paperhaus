@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "categories/index"
   get "products/index"
-  get "about",   to: "pages#about"
+  get "about", to: "pages#about"
   get "contact", to: "pages#contact"
 
 
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
 
   resource :cart, only: [ :show ]
-  post   "cart/add/:product_id",    to: "carts#add",    as: :add_to_cart
+  post   "cart/add/:product_id", to: "carts#add", as: :add_to_cart
   patch  "cart/update/:product_id", to: "carts#update", as: :update_cart_item
   delete "cart/remove/:product_id", to: "carts#remove", as: :remove_from_cart
 end

@@ -1,8 +1,7 @@
 <h1><%= @product.name %></h1>
 <% if @product.image.attached? %>
   <p>
-    <%= image_tag @product.image, alt: @product.name,
-                 style: "max-width: 200px; height: auto;" %>
+    <%= image_tag @product.image, alt: @product.name, style: "max-width: 200px; height: auto;" %>
   </p>
 <% end %>
 <p>by <%= @product.author %></p>

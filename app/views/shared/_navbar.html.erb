@@ -4,12 +4,9 @@
     <a class="navbar-brand" href="<%= root_path %>">Paperhaus</a>
 
     <!-- burger button for mobile view -->
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -36,17 +33,17 @@
 
 
       <!--  user info and buttons  -->
-      <div class="d-flex align-items-center text-white ms-md-3 mt-3 mt-md-0">
-        <% if current_user %>
-          <span class="me-2 small">
-            Logged in as <%= current_user.email %>
-          </span>
-          <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-light btn-sm" %>
-        <% else %>
-          <%= link_to "Login", new_session_path, class: "btn btn-outline-light btn-sm me-2" %>
-          <%= link_to "Sign up", new_user_path, class: "btn btn-primary btn-sm" %>
-        <% end %>
-      </div>
+    <div class="d-flex align-items-center text-white ms-md-3 mt-3 mt-md-0">
+      <% if current_user %>
+        <span class="me-2 small">
+          Logged in as <%= current_user.email %>
+        </span>
+        <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-light btn-sm" %>
+      <% else %>
+        <%= link_to "Login", new_session_path, class: "btn btn-outline-light btn-sm me-2" %>
+        <%= link_to "Sign up", new_user_path, class: "btn btn-primary btn-sm" %>
+      <% end %>
+    </div>
     </div>
   </div>
 </nav>

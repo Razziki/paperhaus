@@ -1,6 +1,7 @@
 ActiveAdmin.register Order do
   # Only allow status to be changed by admin(not implementing shipping yet)
   permit_params :status
+  config.filters = true
 
   index do
     selectable_column
@@ -12,6 +13,7 @@ ActiveAdmin.register Order do
     actions
   end
 
+  # creating filters for active admin and ransack on the orders index page
   filter :status
   filter :user
   filter :created_at
